@@ -83,19 +83,13 @@ $(window).load(function () {
   };
 
   var loadDefaults = function () {
-    $.each($('script'), function (i, value) {
-      if (value.src.indexOf('ClientTiming.js') > -1) {
-        var enabledByDefaultParam = getParam('enabledByDefault', value.src);
-        enabledByDefaultParam = (enabledByDefaultParam.length == 0 || enabledByDefaultParam == '0' || enabledByDefaultParam == 'false') ? 'false' : 'true';
-        var enabledByDefaultStorage = (localStorage['client-side-timing-enabled-by-default'] || '');
+    var enabledByDefault = ($('script[enabledbydefault]').length == 1) ? 'true' : 'false';
+    var enabledByDefaultStorage = (localStorage['client-side-timing-enabled-by-default'] || '');
 
-        if (enabledByDefaultStorage.length > 0 && enabledByDefaultStorage != enabledByDefaultParam) {
-          localStorage.removeItem('client-side-timing-enabled');
-        }
-        localStorage['client-side-timing-enabled-by-default'] = enabledByDefaultParam;
-        return false;
-      }
-    });
+    if (enabledByDefaultStorage.length > 0 && enabledByDefaultStorage != enabledByDefault) {
+      localStorage.removeItem('client-side-timing-enabled');
+    }
+    localStorage['client-side-timing-enabled-by-default'] = enabledByDefault;
   }
 
   setTimeout(function () {
