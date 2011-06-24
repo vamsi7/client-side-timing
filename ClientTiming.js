@@ -83,7 +83,7 @@ $(window).load(function () {
   };
 
   var loadDefaults = function () {
-    var enabledByDefault = ($('script[enabledbydefault]').length == 1) ? 'true' : 'false';
+    var enabledByDefault = ($('script[cst_enabledbydefault]').length == 1) ? 'true' : 'false';
     var enabledByDefaultStorage = (localStorage['client-side-timing-enabled-by-default'] || '');
 
     if (enabledByDefaultStorage.length > 0 && enabledByDefaultStorage != enabledByDefault) {
